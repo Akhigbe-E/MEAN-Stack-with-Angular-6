@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const Schema = mongoose.Schema;
-//const bcrypt = require('bcrypt-nodejs');
+const bcrypt = require('bcrypt-nodejs');
 
 let emailLengthChecker = (email)=>{
     if(!email){
@@ -89,8 +89,8 @@ const userSchema = new Schema({
     username: {type: String, required: true, unique: true, validate: usernameValidators, lowercase: true}, 
     password: {type: String, required: true, validate: passwordValidators}
 });
-/*
-userSchema.pre('save', (next) => {
+
+userSchema.pre('save', function(next) {
     if(!this.isModified('password')){
         return(next);
     }
@@ -99,13 +99,14 @@ userSchema.pre('save', (next) => {
         if(err) return next(err)
         this.password = hash;
         next();
-    })
+    });
 });
 
-userSchema.methods.comparePassword = (password)=>{
+
+userSchema.methods.comparePassword = function(password){
     return bcrypt.compareSync(password, this.password);
 }
-*/
+
 
 
 module.exports = mongoose.model('User', userSchema);

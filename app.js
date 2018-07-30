@@ -13,7 +13,7 @@ mongoose.connect(config.uri, (err)=>{
     if(err){
         console.log('Could not connect to database')
     }else{
-        console.log('Connection to database succesfull')
+        console.log('Connection to database succesful')
     }
 })
 //to use express

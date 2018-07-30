@@ -4,3 +4,8 @@ export class User{
     username: String;
     password: String;
 }
+
+export class UserLogin{
+    username: String;
+    password: String;
+  }
