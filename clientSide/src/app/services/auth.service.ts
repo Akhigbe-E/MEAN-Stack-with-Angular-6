@@ -21,18 +21,9 @@ export class AuthService {
   ) { }
 
 
-  createAuthenticationHeaders(){
-    this.loadToken();
-    this.options = new RequestOptions({
-      headers: new Headers({
-        'Content-Type': 'application/json',
-        'authorization': this.authToken
-      })
-    });
-  }
 
   loadToken(){
-    this.authToken= localStorage.getItem('token')
+    this.authToken = localStorage.getItem('token')
   }
   //Function to register User
   registerUser(user: User): Observable<User>{
@@ -53,16 +44,30 @@ export class AuthService {
   });
   }
 
+  logout(){
+    this.authToken = null;
+    this.user = null;
+    localStorage.clear();
+  }
+  thet;
+
+  checkLogin(){
+    this.thet = localStorage.getItem('token');
+    return this.thet;
+  }
+
   storeUserData(token, user){
     localStorage.setItem("token", token);
     localStorage.setItem('user', JSON.stringify(user));
     this.authToken = token;
-    this.user = user
-    console.log(user);
+    this.user = user;
   }
 
   getProfile(){
-    this.createAuthenticationHeaders();
-    return this.http.get(this.domain+'authentication/profile', this.options)
+    this.loadToken();
+    return this.http.get(this.domain+'/authenticate/profile', {headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'authorization': this.authToken
+    })})
   }
 }

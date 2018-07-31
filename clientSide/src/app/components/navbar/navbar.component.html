@@ -16,12 +16,12 @@
           
           
         <ul class="nav navbar-nav navbar-right">          
-          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/dashboard">DashBoard</a></li>
-          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/profile">Profile</a></li>
-          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"><a href="/">Blog</a></li>
-          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/login">LogIn</a></li>
-          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"><a href="/">LogOut</a></li>
-          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/register">Register</a></li>
+          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" *ngIf="!check()"><a routerLink="/dashboard" >DashBoard</a></li>
+          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" *ngIf="!check()"><a routerLink="/profile">Profile</a></li>
+          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" *ngIf="!check()"><a href="/">Blog</a></li>
+          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" *ngIf="check()"><a routerLink="/login">LogIn</a></li>
+          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" *ngIf="!check()"><a href="#" (click)="onLogoutClick()">LogOut</a></li>
+          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" *ngIf="check()"><a routerLink="/register">Register</a></li>
         </ul>
       </div><!--/.nav-collapse -->
     </div>

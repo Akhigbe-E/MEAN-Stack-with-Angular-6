@@ -7,13 +7,15 @@ import { AuthService } from "../../services/auth.service";
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  user;
+  username = 'LOLO';
+  email="LOLO@lolo.com";
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
     this.authService.getProfile().subscribe(data =>{
-      this.user = data.user;
-    })
+        this.username = data.user.username;
+        this.email = data.user.email;
+    });
   }
 
 }
